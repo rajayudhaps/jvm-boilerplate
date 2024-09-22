@@ -27,7 +27,6 @@ import java.util.stream.Collectors
 import me.rajayudhaps.boilerplate.spi.Calculator
 
 /**
- *
  * @author Raja Sihombing
  * @since 1
  */

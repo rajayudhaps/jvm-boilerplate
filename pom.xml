@@ -246,9 +246,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <sourceDirectories>
               <sourceDirectory>src/main/clojure</sourceDirectory>
             </sourceDirectories>
-            <testSourceDirectories>
-              <testSourceDirectory>src/test/clojure</testSourceDirectory>
-            </testSourceDirectories>
             <cleanAOTNamespaces>true</cleanAOTNamespaces>
             <namespaces>
               <namespace>*</namespace>
@@ -256,6 +253,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             <copiedNamespaces>
               <copiedNamespace>!.*</copiedNamespace>
             </copiedNamespaces>
+          </configuration>
+        </execution>
+        <execution>
+          <id>clojure-test</id>
+          <phase>test</phase>
+          <goals>
+            <goal>test</goal>
+          </goals>
+          <configuration>
+            <testSourceDirectories>
+              <testSourceDirectory>src/test/clojure</testSourceDirectory>
+            </testSourceDirectories>
           </configuration>
         </execution>
       </executions>
