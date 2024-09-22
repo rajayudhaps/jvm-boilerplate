@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+  <property name="charset" value="UTF-8" />
+  <property name="severity" value="warning" />
+
+  <module name="Header">
+    <property name="ignoreLines" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22" />
+  </module>
+
+  <module name="SuppressionFilter">
+    <property name="file"
+              value="${checkstyle.suppressions.file}" />
+  </module>
+
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true" />
+  </module>
+  <module name="LineLength">
+    <property name="fileExtensions" value="java" />
+    <property name="max" value="120" />
+    <property name="ignorePattern" value="^package.*|^import.*" />
+  </module>
+  <module name="NewlineAtEndOfFile" />
+
+  <module name="RegexpSingleline">
+    <property name="format"
+              value="System\.out|System\.err|System\.exit|System\.gc" />
+    <property name="message" value="No system out/err/exit/gc" />
+  </module>
+
+  <module name="TreeWalker">
+    <property name="tabWidth" value="2" />
+
+    <module name="SuppressWarningsHolder" />
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="checkstyle\:off" />
+      <property name="onCommentFormat" value="checkstyle\:on" />
+    </module>
+
+    <!-- annotations -->
+    <module name="AnnotationLocation" />
+    <module name="AnnotationUseStyle" />
+    <module name="MissingOverride" />
+    <module name="SuppressWarnings">
+      <property name="format"
+                value="^((?!unchecked|rawtypes|checkstyle|PMD).)*$" />
+    </module>
+
+    <!-- block checks -->
+    <module name="AvoidNestedBlocks" />
+    <module name="EmptyBlock" />
+    <module name="EmptyCatchBlock">
+      <property name="exceptionVariableName" value="ignored" />
+    </module>
+    <module name="LeftCurly" />
+    <module name="NeedBraces" />
+    <module name="RightCurly" />
+
+    <!-- class design -->
+    <module name="InnerTypeLast" />
+    <module name="InterfaceIsType" />
+    <module name="MutableException" />
+    <module name="ThrowsCount" />
+    <module name="VisibilityModifier" />
+
+    <!-- coding -->
+    <module name="AvoidDoubleBraceInitialization" />
+    <module name="CovariantEquals" />
+    <module name="DeclarationOrder" />
+    <module name="DefaultComesLast" />
+    <module name="EmptyStatement" />
+    <module name="EqualsAvoidNull" />
+    <module name="EqualsHashCode" />
+    <module name="ExplicitInitialization" />
+    <module name="FallThrough" />
+    <module name="IllegalInstantiation" />
+    <module name="IllegalThrows" />
+    <module name="IllegalToken" />
+    <module name="IllegalType">
+      <property name="tokens"
+                value="METHOD_DEF, PARAMETER_DEF, VARIABLE_DEF" />
+    </module>
+    <module name="InnerAssignment" />
+    <module name="MissingSwitchDefault" />
+    <module name="MultipleVariableDeclarations" />
+    <module name="NestedForDepth">
+      <property name="max" value="2" />
+    </module>
+    <module name="NestedIfDepth">
+      <property name="max" value="2" />
+    </module>
+    <module name="NestedTryDepth">
+      <property name="max" value="2" />
+    </module>
+    <module name="NoFinalizer" />
+    <module name="OneStatementPerLine" />
+    <module name="PackageDeclaration" />
+    <module name="ParameterAssignment" />
+    <module name="SimplifyBooleanExpression" />
+    <module name="SimplifyBooleanReturn" />
+    <module name="StringLiteralEquality" />
+    <module name="SuperClone" />
+    <module name="SuperFinalize" />
+    <module name="UnnecessaryParentheses" />
+    <module name="UnnecessarySemicolonAfterOuterTypeDeclaration" />
+    <module name="UnnecessarySemicolonAfterTypeMemberDeclaration" />
+    <module name="UnnecessarySemicolonInEnumeration" />
+    <module name="UnnecessarySemicolonInTryWithResources" />
+    <module name="UnusedLocalVariable" />
+
+    <!-- imports -->
+    <module name="AvoidStarImport" />
+    <module name="RedundantImport" />
+    <module name="UnusedImports" />
+    <module name="IllegalImport" />
+
+    <!-- javadoc -->
+    <module name="InvalidJavadocPosition" />
+    <module name="JavadocContentLocation" />
+    <module name="JavadocMethod">
+      <property name="accessModifiers" value="public" />
+      <property name="allowMissingParamTags" value="true" />
+      <property name="allowMissingReturnTag" value="true" />
+      <property name="allowedAnnotations"
+                value="Override, Test" />
+      <property name="tokens"
+                value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF" />
+    </module>
+    <module name="JavadocType" />
+    <module name="JavadocStyle" />
+
+    <!-- metrics -->
+    <module name="CyclomaticComplexity" />
+    <module name="NPathComplexity" />
+
+    <!-- miscellaneous -->
+    <module name="ArrayTypeStyle" />
+    <module name="TodoComment" />
+    <module name="UpperEll" />
+
+    <!-- modifiers -->
+    <module name="ModifierOrder" />
+    <module name="RedundantModifier" />
+
+    <!-- naming conventions -->
+    <module name="ClassTypeParameterName" />
+    <module name="ConstantName" />
+    <module name="LambdaParameterName" />
+    <module name="LocalFinalVariableName" />
+    <module name="LocalVariableName" />
+    <module name="MemberName" />
+    <module name="MethodName" />
+    <module name="MethodTypeParameterName" />
+    <module name="PackageName" />
+    <module name="ParameterName" />
+    <module name="RecordComponentName" />
+    <module name="RecordTypeParameterName" />
+    <module name="StaticVariableName" />
+    <module name="TypeName" />
+
+    <!-- size violations -->
+    <module name="MethodLength">
+      <property name="max" value="60" />
+    </module>
+    <module name="AnonInnerLength">
+      <property name="max" value="60" />
+    </module>
+    <module name="LambdaBodyLength">
+      <property name="max" value="60" />
+    </module>
+    <module name="OuterTypeNumber" />
+
+    <!-- whitespace -->
+    <module name="EmptyForInitializerPad" />
+    <module name="EmptyForIteratorPad" />
+    <module name="EmptyLineSeparator">
+      <property name="tokens"
+                value="IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, STATIC_INIT, INSTANCE_INIT,
+                      METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF" />
+      <property name="allowNoEmptyLineBetweenFields"
+                value="true" />
+    </module>
+    <module name="GenericWhitespace" />
+    <module name="MethodParamPad" />
+    <module name="NoWhitespaceAfter" />
+    <module name="NoWhitespaceBefore" />
+    <module name="ParenPad" />
+    <module name="TypecastParenPad" />
+    <module name="WhitespaceAfter" />
+    <module name="WhitespaceAround">
+      <property name="allowEmptyLambdas" value="true" />
+    </module>
+  </module>
+</module>

@@ -9,6 +9,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <name>boilerplate</name>
 <description>The description</description>
 <url>https://rajayudhaps.me/boilerplate</url>
+<inceptionYear>2024</inceptionYear>
 
 <properties>
   <!-- Maven configuration -->
@@ -20,11 +21,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <changelist>-SNAPSHOT</changelist>
 
   <!-- Maven plugins -->
+  <clojure-maven-plugin.version>1.8.3</clojure-maven-plugin.version>
   <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-  <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
   <maven-surefire-plugin.version>3.4.0</maven-surefire-plugin.version>
   <maven-failsafe-plugin.version>${maven-surefire-plugin.version}</maven-failsafe-plugin.version>
-  <clojure-maven-plugin.version>1.8.3</clojure-maven-plugin.version>
+  <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
+  <maven-pmd-plugin.version>3.25.0</maven-pmd-plugin.version>
+  <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+  <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
 
   <!-- Kotlin -->
   <kotlin.version>2.0.20</kotlin.version>
@@ -34,6 +38,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <!-- Clojure -->
   <clojure.version>1.12.0</clojure.version>
   <clojure.tools.logging.version>1.3.0</clojure.tools.logging.version>
+
+  <!-- Checkstyle -->
+  <checkstyle.version>10.12.1</checkstyle.version>
+
+  <!-- PMD -->
+  <pmd.version>7.5.0</pmd.version>
 
   <!-- Dependencies version -->
   <junit.version>5.11.0</junit.version>
@@ -93,8 +103,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 </dependencies>
 
 <build>
-  <!-- <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-  <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory> -->
   <pluginManagement>
     <plugins>
       <plugin>
@@ -116,6 +124,21 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless-maven-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven-checkstyle-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -234,6 +257,111 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
               <copiedNamespace>!.*</copiedNamespace>
             </copiedNamespaces>
           </configuration>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>com.diffplug.spotless</groupId>
+      <artifactId>spotless-maven-plugin</artifactId>
+      <configuration>
+        <upToDateChecking>
+          <enabled>true</enabled>
+          <indexFile>${project.basedir}/custom-index-file</indexFile>
+        </upToDateChecking>
+        <java>
+          <googleJavaFormat />
+          <licenseHeader>
+            <file>${project.basedir}/header.txt</file>
+          </licenseHeader>
+        </java>
+        <kotlin>
+          <includes>
+            <include>src/main/kotlin/**/*.kt</include>
+            <include>src/test/kotlin/**/*.kt</include>
+          </includes>
+          <ktfmt />
+          <licenseHeader>
+            <file>${project.basedir}/header.txt</file>
+          </licenseHeader>
+        </kotlin>
+      </configuration>
+      <executions>
+        <execution>
+          <id>validate</id>
+          <phase>validate</phase>
+          <goals>
+            <goal>apply</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-checkstyle-plugin</artifactId>
+      <dependencies>
+        <dependency>
+          <groupId>com.puppycrawl.tools</groupId>
+          <artifactId>checkstyle</artifactId>
+          <version>${checkstyle.version}</version>
+        </dependency>
+      </dependencies>
+      <configuration>
+        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+        <configLocation>.checkstyle/config.xml</configLocation>
+        <suppressionsLocation>.checkstyle/suppressions.xml</suppressionsLocation>
+        <violationSeverity>warning</violationSeverity>
+        <failOnViolation>true</failOnViolation>
+        <consoleOutput>true</consoleOutput>
+      </configuration>
+      <executions>
+        <execution>
+          <id>validate</id>
+          <phase>validate</phase>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-pmd-plugin</artifactId>
+      <configuration>
+        <rulesets>
+          <ruleset>.pmd/ruleset.xml</ruleset>
+        </rulesets>
+        <printFailingErrors>true</printFailingErrors>
+        <linkXRef>false</linkXRef>
+      </configuration>
+      <dependencies>
+        <dependency>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-core</artifactId>
+          <version>${pmd.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-java</artifactId>
+          <version>${pmd.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-javascript</artifactId>
+          <version>${pmd.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>net.sourceforge.pmd</groupId>
+          <artifactId>pmd-jsp</artifactId>
+          <version>${pmd.version}</version>
+        </dependency>
+      </dependencies>
+      <executions>
+        <execution>
+          <id>validate</id>
+          <phase>validate</phase>
+          <goals>
+            <goal>check</goal>
+          </goals>
         </execution>
       </executions>
     </plugin>
