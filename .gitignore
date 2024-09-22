@@ -31,3 +31,7 @@ replay_pid*
 # Clojure Plugins 
 .clj-kondo
 .lsp
+
+# Intelij
+.idea
+*.iml
