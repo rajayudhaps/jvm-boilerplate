@@ -6,8 +6,12 @@
   <groupId>me.rajayudhaps</groupId>
   <artifactId>biolerplate</artifactId>
   <version>${revision}${changelist}</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>calculator</module>
+  </modules>
 
-  <name>boilerplate</name>
+  <name>Boilerplate</name>
   <description>The description</description>
   <url>https://rajayudhaps.me/boilerplate</url>
   <inceptionYear>2024</inceptionYear>
@@ -80,30 +84,9 @@
       <version>${clojure.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>tools.logging</artifactId>
-      <version>${clojure.tools.logging.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
       <version>${kotlin.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -295,7 +278,7 @@
           <java>
             <googleJavaFormat />
             <licenseHeader>
-              <file>${project.basedir}/header.txt</file>
+              <file>./header.txt</file>
             </licenseHeader>
           </java>
           <kotlin>
@@ -305,7 +288,7 @@
             </includes>
             <ktfmt />
             <licenseHeader>
-              <file>${project.basedir}/header.txt</file>
+              <file>./header.txt</file>
             </licenseHeader>
           </kotlin>
         </configuration>

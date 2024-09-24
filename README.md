@@ -24,7 +24,7 @@ You can mix the implementation your project without many setup needed using this
 There some enhancement and additional feature will be added in the future in this boilerplate:
 
 - [X] Add Deployment to Sonatype (Maven Repository)
-- [ ] Add multi-module support
+- [X] Implement multi-module support
 - [ ] Add Gradle support
 - [ ] Add other design pattern implementations
 - [ ] Add Scala and Groovy (still on reasearch step)
