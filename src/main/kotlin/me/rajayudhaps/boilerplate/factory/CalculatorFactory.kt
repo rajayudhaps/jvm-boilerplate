@@ -46,7 +46,7 @@ object CalculatorFactory {
             .filter { e -> e != null }
             .collect(Collectors.toSet())
     if (instances.isEmpty()) {
-      throw RuntimeException("Unable to load the license service instance.")
+      throw RuntimeException("Unable to load the calculator instance.")
     }
     return instances
   }

@@ -1,4 +1,4 @@
-(ns me.rajayudhaps.boilerplate.spi-test
+(ns me.rajayudhaps.boilerplate.spi-tests
   (:require [clojure.test :as t]
             [me.rajayudhaps.boilerplate.spi :as spi]))
 
