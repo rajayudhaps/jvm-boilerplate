@@ -28,7 +28,7 @@ replay_pid*
 # VS Code
 .vscode
 
-# Clojure Plugins 
+# Clojure 
 .clj-kondo
 .lsp
 
@@ -38,3 +38,8 @@ replay_pid*
 
 # Leiningen
 project.clj
+
+# Gradle
+.gradle
+.kotlin
+build
