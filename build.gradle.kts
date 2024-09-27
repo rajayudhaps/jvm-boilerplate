@@ -2,7 +2,7 @@ import com.diffplug.gradle.spotless.SpotlessCheck
 import nebula.plugin.clojuresque.tasks.ClojureCompile
 
 plugins {
-  java
+  `java-library`
   kotlin("jvm") version "2.0.20"
   id("nebula.clojure") version "14.2.0"
   id("com.diffplug.spotless") version "7.0.0.BETA2"
@@ -22,7 +22,8 @@ description = "boilerplate"
 java.setSourceCompatibility(JavaVersion.VERSION_17)
 
 dependencies {
-  api("org.clojure:clojure:1.12.0")
+  api(libs.org.clojure.core)
+  api(libs.org.clojure.tools.logging)
   testImplementation(kotlin("test"))
 }
 
@@ -51,11 +52,11 @@ tasks.withType<ClojureCompile> { mustRunAfter(":compileJava", ":compileKotlin") 
 spotless {
   java {
     googleJavaFormat()
-    licenseHeaderFile("./header.txt")
+    licenseHeaderFile("${project.rootDir.toString()}/header.txt")
   }
   kotlin {
     ktfmt()
-    licenseHeaderFile("./header.txt")
+    licenseHeaderFile("${project.rootDir.toString()}/header.txt")
   }
   kotlinGradle {
     target("*.gradle.kts") // default target for kotlinGradle
@@ -67,9 +68,9 @@ tasks.withType<SpotlessCheck> { dependsOn(":spotlessApply") }
 
 pmd {
   isConsoleOutput = true
-  ruleSetFiles = files("config/pmd/ruleset.xml")
+  ruleSetFiles = files("${project.rootDir.toString()}/config/pmd/ruleset.xml")
 }
 
 tasks.withType<Test> { useJUnitPlatform() }
 
-publishing { publications { register("mavenJava", MavenPublication::class) {} } }
+publishing { publications.create<MavenPublication>("maven") { from(components["java"]) } }
