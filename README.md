@@ -16,7 +16,20 @@ Polyglot boilerplate of JVM based programming languages using dependency managem
 
 The boilerplate will contains and supports some JVM based programming languages which are **Java, Kotlin and Clojure** using **Apache Maven** as dependency management for now. In the future, we will add **Gradle** as other alternative for **Apache Maven**.
 
-You can mix the implementation your project without many setup needed using this boilerplate. 
+You can mix the implementation your project without many setup is needed using this boilerplate. 
+
+## Recommendation
+
+To use this boilerplate, we recommend to put the implementation of your project like these:
+
+1. Java (_src/main/java_) and Kotlin (_src/main/kotlin_) source folder
+   - General/Base model or domain application
+   - Custom exception
+   - Interfaces, enums and constant
+   - Design pattern implementation with loosely coupled dependency to the implementation.
+2. Clojure (_src/main/clojure_) source folder
+   - Interface implementation
+   - Proxy classes
 
 
 ## To Be Done in the Future
@@ -24,7 +37,7 @@ You can mix the implementation your project without many setup needed using this
 There some enhancement and additional feature will be added in the future in this boilerplate:
 
 - [X] Add Deployment to Sonatype (Maven Repository)
-- [ ] Add multi-module support
-- [ ] Add Gradle support
+- [X] Add multi-module support, refer [feature/multi-module](https://github.com/rajayudhaps/jvm-boilerplate/blob/feature/multi-module/pom.xml) branch for more detail and implementation
+- [X] Add Gradle support
 - [ ] Add other design pattern implementations
 - [ ] Add Scala and Groovy (still on reasearch step)

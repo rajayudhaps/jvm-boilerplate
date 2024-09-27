@@ -28,10 +28,16 @@ replay_pid*
 # VS Code
 .vscode
 
-# Clojure Plugins 
+# Clojure 
 .clj-kondo
 .lsp
+project.clj
 
 # Intelij
 .idea
 *.iml
+
+# Gradle
+.gradle
+.kotlin
+build
